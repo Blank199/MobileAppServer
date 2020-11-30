@@ -3,7 +3,7 @@ from tinydb import TinyDB
 from repository.Repo import *
 
 
-class UtilitiesPtovide:
+class UtilitiesProvider:
     repo = None
     db = None
 
