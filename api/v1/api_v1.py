@@ -1,9 +1,11 @@
 
-
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, request
 
 from UtilitiesProvider import UtilitiesProvider
+
+
 from repository.Repo import *
+from flask_socketio import send
 
 api = Blueprint('api_v1', __name__)
 
@@ -47,4 +49,6 @@ def updateProduct():
     repo.updateProduct(product)
 
     return content
+
+
 
