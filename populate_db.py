@@ -1,12 +1,20 @@
 from tinydb import TinyDB
 from UtilitiesProvider import UtilitiesProvider
 from domain.Product import Product
+from domain.User import User
 
 UtilitiesProvider.create()
 repo = UtilitiesProvider.repo
+userRepo = UtilitiesProvider.userRepo
+
 
 repo.clear()
 
-repo.addProduct(Product("1", "Lapte", "10", "200"))
-repo.addProduct(Product("2", "Oua", "1", "400"))
-repo.addProduct(Product("3", "Sticsuri", "3", "2000"))
+for i in range(3):
+    product = Product(i.__str__(), "Lapte" + i.__str__(), "10", "200", "")
+    product.username = "a"
+    repo.addProduct(product)
+
+
+userRepo.addUser(User("a", "a"))
+userRepo.addUser(User("b", "b"))

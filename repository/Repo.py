@@ -15,11 +15,15 @@ class Repo:
         prod = Query()
         self.table.update(product.toDict(), prod.id == product.id)
 
-    def returnAllElems(self):
-        elems = self.table.all()
+    def returnAllElems(self, username, limit, page):
+        prod = Query()
+        elem = self.table.search(prod.username == username)
         result = []
-        for i in elems:
-            result.append(Product(**i))
+        start = limit * (page - 1)
+        end = min(len(elem), limit * page)
+
+        for i in range(start, end):
+            result.append(Product(**elem[i]))
 
         return result
 
@@ -32,3 +36,6 @@ class Repo:
 
     def clear(self):
         self.db.drop_tables()
+
+    def noProducts(self):
+        return len(self.table)

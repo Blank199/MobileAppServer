@@ -1,11 +1,22 @@
+import json
+
 from flask_cors import cross_origin
-from flask_socketio import emit
+from flask_socketio import emit, SocketIO
 
-from app import mySocket
+from Utilities.Tocken import verify
 
+mySocket = SocketIO(cors_allowed_origins="*")
 
 @mySocket.on('connect')
-@cross_origin(origin='*', headers=['Content- Type', 'Authorization'])
 def on_connect():
     print('user connected')
-    emit('connect')
+    emit('test', 'AAAAA')
+
+@mySocket.on('message')
+def handle_message(data):
+    authDetails = json.loads(data)
+
+    if authDetails["type"] != "authorization":
+        print('Nu e bine!!')
+    else:
+        verify(authDetails['payload']['token'])
