@@ -9,7 +9,7 @@ mySocket = SocketIO(cors_allowed_origins="*")
 
 @mySocket.on('connect')
 def on_connect():
-    print('user connected')
+    print('socket connected')
     emit('test', 'AAAAA')
 
 @mySocket.on('message')

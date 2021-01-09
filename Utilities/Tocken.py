@@ -18,7 +18,7 @@ def createToken(credentials):
     return etoken.serialize()
 
 def verify(token):
-        ET = jwt.JWT(key=key, jwt=token)
+    ET = jwt.JWT(key=key, jwt=token)
     ST = jwt.JWT(key=key, jwt=ET.claims)
     print(ST.claims)
 
